@@ -1,0 +1,28 @@
+# Docker / cache
+cache/
+outputs/
+__pycache__/
+*.log
+
+# Stable Diffusion - modelos grandes
+models/
+embeddings/
+extensions/
+
+# Assets e downloads automáticos
+stable-diffusion-webui/models/
+stable-diffusion-webui/extensions/
+stable-diffusion-webui/embeddings/
+stable-diffusion-webui/outputs/
+
+# Python
+*.pyc
+*.pyo
+
+# Editor / sistema
+*.swp
+*.swo
+.DS_Store
+
+# Segurança
+.env
