@@ -1,8 +1,8 @@
 # Stable Diffusion WebUI com ROCm em AMD RX 580 (GFX803)
 
-Este repositório fornece um setup **funcional e testado** do **Stable Diffusion WebUI** rodando em **Docker** com **ROCm**, especificamente ajustado para **AMD RX 580 (GFX803)**.
+Este repositório fornece um setup **funcional e testado** do **Stable Diffusion WebUI (AUTOMATIC1111)** rodando em **Docker** com **ROCm**, especificamente ajustado para **AMD RX 580 (GFX803 / Polaris)**.
 
-> ⚠️ RX 580 **não é oficialmente suportada** pelas versões recentes do ROCm.  
+> ⚠️ **A RX 580 não é oficialmente suportada** pelas versões recentes do ROCm.  
 > Este projeto existe justamente para contornar essas limitações e **fazer funcionar na prática**.
 
 ---
@@ -14,42 +14,52 @@ Este repositório fornece um setup **funcional e testado** do **Stable Diffusion
 - **Kernel:** 5.15.x
 - **ROCm:** 6.1.2
 - **PyTorch:** 2.4 (HIP)
-- **Docker:** Engine + Compose
+- **Docker:** Docker Engine (+ Compose opcional)
 - **Imagem base:** `woodrex/rocm612-torch24-sd-webui-gfx803`
 
 ---
 
-## 🚀 O que funciona
+## 📥 Clonar o repositório
 
-- ✅ Stable Diffusion WebUI (AUTOMATIC1111)
-- ✅ Geração de imagens via GPU (HIP / ROCm)
-- ✅ Atenção otimizada (`--opt-sdp-attention`)
-- ✅ Modelos `.safetensors`
-- ✅ Interface Web (porta 7860)
+```bash
+git clone https://github.com/danarcanjosilva/ROCm-StableDiffusion-RX580.git
+cd ROCm-StableDiffusion-RX580
+🚀 O que funciona
+✅ Stable Diffusion WebUI (AUTOMATIC1111)
 
----
+✅ Geração de imagens via GPU (HIP / ROCm)
 
-## ❌ Limitações conhecidas
+✅ Atenção otimizada (--opt-sdp-attention)
 
-- ❌ `xformers` não funciona em GFX803
-- ❌ Algumas warnings do MIOpen (`hipMemGetInfo error`) — **não quebram a geração**
-- ⚠️ Tempo de startup alto no primeiro boot (download + hash de modelos)
-- ⚠️ Performance inferior a GPUs RDNA / NVIDIA (esperado)
+✅ Modelos .safetensors
 
----
+✅ Interface Web via navegador (porta 7860)
 
-## 📦 Estrutura do projeto
+❌ Limitações conhecidas
+❌ xformers não funciona em GFX803
 
-```text
+❌ Warnings do MIOpen (hipMemGetInfo error)
+→ não quebram a geração
+
+⚠️ Tempo de startup alto no primeiro boot
+(download + hash dos modelos)
+
+⚠️ Performance inferior a GPUs RDNA ou NVIDIA
+(esperado para Polaris)
+
+📦 Estrutura do projeto
+text
+Copiar código
 .
 ├── Dockerfile
 ├── docker-compose.yml
 ├── webui-user.sh
-├── cache/                # ignorado pelo git
-├── models/               # ignorado pelo git
-├── outputs/              # ignorado pelo git
-└── stable-diffusion-webui/ (repositório externo, não versionado)
-🔒 Modelos, outputs e cache não são enviados ao GitHub por segurança e tamanho.
+├── cache/                  # ignorado pelo git
+├── models/                 # ignorado pelo git
+├── outputs/                # ignorado pelo git
+└── stable-diffusion-webui/ # repositório externo (não versionado)
+🔒 Modelos, outputs e cache não são enviados ao GitHub
+por questões de tamanho, licença e segurança.
 
 ▶️ Como subir o container
 1️⃣ Subir o Stable Diffusion WebUI
@@ -68,11 +78,13 @@ sudo docker run -d \
   --entrypoint python \
   woodrex/rocm612-torch24-sd-webui-gfx803 \
   launch.py --listen --opt-sdp-attention --skip-torch-cuda-test --disable-nan-check
-2️⃣ Acessar no navegador
+⏱️ Primeira inicialização: pode levar vários minutos.
+
+🌐 Acessar no navegador
 cpp
 Copiar código
 http://127.0.0.1:7860
-⏹️ Parar / voltar depois
+⏹️ Parar e iniciar novamente
 Parar o container
 bash
 Copiar código
@@ -81,22 +93,21 @@ Iniciar novamente
 bash
 Copiar código
 sudo docker start sd-webui
-Logs em tempo real
+Ver logs em tempo real
 bash
 Copiar código
 sudo docker logs -f sd-webui
 🧪 Observações importantes
-Não use --lowvram nem --no-half
-→ causam travamentos ou geração infinita na RX 580
+❌ Não use --lowvram nem --no-half
 
---opt-sdp-attention é obrigatório
+✅ --opt-sdp-attention é obrigatório
 
-HSA_OVERRIDE_GFX_VERSION=8.0.3 é essencial
+✅ HSA_OVERRIDE_GFX_VERSION=8.0.3 é essencial
 
-O warning do MIOpen pode ser ignorado se a imagem gerar normalmente
+⚠️ Warnings do MIOpen podem ser ignorados se estiver gerando imagens
 
 🧠 Por que este projeto existe?
-Muitos afirmam que:
+Muitos afirmam:
 
 “RX 580 não roda mais Stable Diffusion”
 
@@ -113,4 +124,4 @@ Ajustes e testes: @danarcanjosilva
 
 ⚠️ Aviso legal
 Use por sua conta e risco.
-Este projeto não é afiliado oficialmente à AMD ou Stability AI.
+Este projeto não é afiliado oficialmente à AMD ou à Stability AI.
