@@ -81,7 +81,7 @@ sudo docker run -d \
 ⏱️ Primeira inicialização: pode levar vários minutos.
 
 🌐 Acessar no navegador
-cpp
+
 Copiar código
 http://127.0.0.1:7860
 ⏹️ Parar e iniciar novamente
