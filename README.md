@@ -48,7 +48,7 @@ cd ROCm-StableDiffusion-RX580
 (esperado para Polaris)
 
 📦 Estrutura do projeto
-text
+
 Copiar código
 .
 ├── Dockerfile
