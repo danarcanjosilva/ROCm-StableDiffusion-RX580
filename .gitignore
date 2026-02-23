@@ -1,0 +1,23 @@
+# Pastas de dados (NÃO VÃO PARA O GITHUB)
+/models/*
+/outputs/*
+/config/*
+/downloads/*
+
+# Manter apenas as pastas vazias
+!/models/
+!/models/Stable-diffusion/
+!/models/Lora/
+!/models/VAE/
+!/models/Embeddings/
+!/models/hypernetworks/
+!/models/ControlNet/
+!/outputs/
+!/config/
+!/downloads/
+
+# Arquivos temporários
+*.log
+*.pyc
+__pycache__/
+.DS_Store
