@@ -155,7 +155,6 @@ Mantenedores do ROCm
 
 Todos que ajudaram nos testes e correções
 
-<div align="center"> <p>Feito com 💜 para a comunidade AMD RX580</p> <p>📍 by <a href="https://github.com/danarcanjosilva">danarcanjosilva</a></p> </div> ```
 ✅ O QUE ESTE README INCLUI:
 ✅ Instruções passo a passo
 
