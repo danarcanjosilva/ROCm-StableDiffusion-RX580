@@ -102,6 +102,9 @@ CFG Scale	7
 Size	512x512
 Clique em Generate e aguarde sua primeira imagem!
 
+<img width="512" height="512" alt="00002-532405152" src="https://github.com/user-attachments/assets/31dc72eb-61bc-4ec7-ad82-9d348ab575b8" />
+
+
 ⚠️ Avisos Importantes (Podem ser Ignorados)
 Durante a execução, você pode ver estes avisos – são normais e não afetam o funcionamento:
 
